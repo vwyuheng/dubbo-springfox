@@ -3,16 +3,19 @@ package io.hulk.dubbo.springfox.demo.springboot.apiimpl;
 import io.hulk.dubbo.springfox.demo.springboot.api.BookService;
 import io.hulk.dubbo.springfox.demo.springboot.model.Book;
 import io.hulk.dubbo.springfox.demo.springboot.model.User;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author zhaojigang
- * @date 2018/5/16
- */
+@DubboService(
+    version = "1.0.0-daily",
+    group = "dev",
+    owner = "ownerName",
+    timeout = 3000
+)
 public class BookServiceImpl implements BookService {
     @Override
     public Book testCommonField(Book book, User user, String title, int count) {

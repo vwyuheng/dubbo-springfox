@@ -1,4 +1,4 @@
-package io.hulk.dubbo.springfox.core;
+package io.hulk.dubbo.springfox.core.config;
 
 import java.util.Map;
 

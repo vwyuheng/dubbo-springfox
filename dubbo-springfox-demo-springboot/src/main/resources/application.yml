@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: demo
+
+
+dubbo:
+  consumer:
+    filter:
+  protocol:
+    name: dubbo
+    port: 20880
+  provider:
+    filter:
+  registry:
+    address: 127.0.0.1:9557,127.0.0.1:2012
+    protocol: zookeeper
+  scan:
+    base-packages: io.hulk.dubbo.springfox.demo.springboot
+
+server:
+  port: 8081
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true

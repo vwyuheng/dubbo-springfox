@@ -13,9 +13,6 @@ import io.hulk.dubbo.springfox.core.helper.PrimitiveTypeHelper;
 
 /**
  * controller类代码构建器
- *
- * @author zhaojigang
- * @date 2018/5/16
  */
 public class ClassCodeGenerator {
 
@@ -45,12 +42,13 @@ public class ClassCodeGenerator {
         codeBuilder.append("package ").append(packageName).append("DubboApi;\n");
 
         /**
-         * 4 获取重组@Api注解
+         * 4 获取重组@Tag注解
          */
         final Tag api = dubboInterface.getAnnotation(Tag.class);
         if (api != null) {
-            String apiTag = api.name() != "" ? api.name() : api.description();
-            codeBuilder.append("@io.swagger.v3.oas.annotations.tags.Tag(name = \"" + apiTag + "\")").append("\n");
+            String apiTag = api.name() != "" ? api.name() : "";
+            String apiDesc = api.description() != "" ? api.description(): "";
+            codeBuilder.append("@io.swagger.v3.oas.annotations.tags.Tag(name = \"" + apiTag +",description = "+ apiDesc+ "\")").append("\n");
 
             //TODO
         }
@@ -86,8 +84,11 @@ public class ClassCodeGenerator {
              * 8.1 获取重组ApiOperation注解
              */
             final Operation apiOperation = method.getAnnotation(Operation.class);
+            //final io.swagger.v3.oas.annotations.Parameter annoParameter = method.getAnnotation(io.swagger.v3.oas.annotations.Parameter.class);
             if (apiOperation != null) {
-                codeBuilder.append("@io.swagger.v3.oas.annotations.Operation(summary = \"" + apiOperation.summary() + "\")\n");
+                codeBuilder.append("@io.swagger.v3.oas.annotations.Operation(summary = \"" + apiOperation.summary()!=""?apiOperation.summary():""
+                    +",description = " + apiOperation.description() != "" ? apiOperation.description() : ""
+                    + "\")\n");
                 //TODO
             }
 
@@ -97,14 +98,15 @@ public class ClassCodeGenerator {
              * 支持方法重写
              */
             String serviceVersion = sb.getVersion() != null && sb.getVersion().length() > 0 ? sb.getVersion() : "0.0.0";
-            codeBuilder.append("@org.springframework.web.bind.annotation.RequestMapping(value = \"/" + serviceVersion
-                               + "/" + dubboInterfaceImpl.getCanonicalName() + "/" + method.getName());
-            if (apiOperation != null && apiOperation.method().trim().length() > 0) {
+            codeBuilder.append("@org.springframework.web.bind.annotation.GetMapping(value = \"/" + serviceVersion
+                               + "/" + dubboInterfaceImpl.getCanonicalName() + "/" + method.getName()+")\n");
+
+            /*if (apiOperation != null && apiOperation.method().trim().length() > 0) {
                 codeBuilder.append("/").append(apiOperation.method().trim());
 
                 //TODO
-            }
-            codeBuilder.append("\", method = org.springframework.web.bind.annotation.RequestMethod.POST)\n");
+            }*/
+           // codeBuilder.append("\", method = org.springframework.web.bind.annotation.RequestMethod.POST)\n");
 
             /**
              * 8.3 创建方法定义
@@ -122,7 +124,7 @@ public class ClassCodeGenerator {
             StringBuilder parameterBuilder = new StringBuilder();
 
             for (int i = 0; i < parameters.length; i++) {
-                Parameter parameter = parameters[i];
+                java.lang.reflect.Parameter parameter = parameters[i];
                 String parameterName = parameterNames[i];
                 final io.swagger.v3.oas.annotations.Parameter apiParam = parameter.getAnnotation(io.swagger.v3.oas.annotations.Parameter.class);
                 if (apiParam != null) {
