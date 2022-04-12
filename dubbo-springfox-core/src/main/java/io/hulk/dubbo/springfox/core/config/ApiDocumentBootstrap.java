@@ -19,9 +19,6 @@ import io.hulk.dubbo.springfox.core.scanner.XmlDubboApiScanner;
 
 /**
  * api文档扫描主类
- *
- * @author zhaojigang
- * @date 2018/5/14
  */
 @Configuration
 public class ApiDocumentBootstrap implements ApplicationContextAware {

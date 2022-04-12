@@ -2,10 +2,7 @@ package io.hulk.dubbo.springfox.demo.springboot.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-/**
- * @author zhaojigang
- * @date 2018/3/13
- */
+
 @Schema(title = "用户模型")
 public class User {
     @Schema(title = "用户ID")

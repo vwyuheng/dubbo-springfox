@@ -7,9 +7,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * spring工具类
- *
- * @author zhaojigang
- * @date 2018/5/16
  */
 public class SpringHelper {
 

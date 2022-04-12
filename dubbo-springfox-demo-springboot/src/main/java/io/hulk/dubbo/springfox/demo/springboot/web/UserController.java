@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.hulk.dubbo.springfox.demo.springboot.model.Book;
 
 
-/**
- * @author zhaojigang
- * @date 2018/5/16
- */
 @Tag(name = "UserController",description = "user相关api")
 @RestController
 @RequestMapping("/user")

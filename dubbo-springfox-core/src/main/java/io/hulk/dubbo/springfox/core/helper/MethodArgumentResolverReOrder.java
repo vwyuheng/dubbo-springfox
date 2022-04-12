@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
@@ -15,12 +15,10 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  *
  * 详细信息见：https://www.cnblogs.com/java-zhao/p/9119258.html
  *
- * @author zhaojigang
- * @date 2018/5/17
  */
 @Configuration
 public class MethodArgumentResolverReOrder {
-    @Autowired
+    @Resource
     private RequestMappingHandlerAdapter adapter;
 
     @PostConstruct

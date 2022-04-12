@@ -12,9 +12,6 @@ import java.util.UUID;
 
 /**
  * 基础类型
- *
- * @author zhaojigang
- * @date 2018/5/15
  */
 public class PrimitiveTypeHelper {
     private static final List<Class<?>> PRIMITIVES = new ArrayList<>();

@@ -7,14 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * xml配置的dubbo-api扫描器
+ * dubbo-api扫描器 支持注解
  * <p>
  * 原理：
  * 以xml配置的dubbo-api，在dubbo服务启动时，会将dubbo-api转化为ServiceBean注册到ApplicationContext中，
  * 所以从ApplicationContext中获取所有的ServiceBean，就拿到了所有的dubbo-api。
- *
- * @author zhaojigang
- * @date 2018/5/15
  */
 public class XmlDubboApiScanner implements ApiScanner<ApplicationContext, Map<String, ServiceBean>> {
     @Override

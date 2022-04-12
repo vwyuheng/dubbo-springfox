@@ -12,10 +12,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author zhaojigang
- * @date 2018/5/16
- */
 @Tag(name = "BookService",description = "Book相关的Dubbo服务")
 public interface BookService {
 
